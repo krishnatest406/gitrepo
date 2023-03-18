@@ -36,7 +36,7 @@ public class LoginStepDef1 {
 	@When("launch {string} site")
 	public void openSite(String url) throws Exception {
 		wu=new WebSiteUtility();
-		wu.launchSite(bc.driver, url);
+		wu.launchSite(bc.driver,url);
 	}
 	@And ("enter firstName {} and lastName {}")
 	public void reg1(String uname,String lname) throws Exception {
