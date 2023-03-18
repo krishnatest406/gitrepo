@@ -26,7 +26,8 @@ Feature: para bank
     And get account details
     And go to fund transfer menu and enter money and select sender and reciver details and click on transfer btn
     Then check the money is transfered or not
-
+		When close the site
+		
     Examples: 
       | usn         | pw      |
-      | suryaking26 | surya22 |
+      | suryaking23 | surya22 |
