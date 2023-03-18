@@ -59,7 +59,7 @@
 					<version>3.0.0-M3</version>
 					<configuration>
 						<suiteXmlFiles>
-								<suiteXmlFile>gmailtestng.xml</suiteXmlFile>
+								<suiteXmlFile>paratestng.xml</suiteXmlFile>
 						</suiteXmlFiles>
 					</configuration>
 				</plugin>
