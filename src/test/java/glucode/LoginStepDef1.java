@@ -5,20 +5,19 @@ import java.time.Duration;
 
 
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.FluentWait;
 
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.LoginPage1;
+import pages.SignupPage;
 import utility.WebSiteUtility;
 
 public class LoginStepDef1 {
 	public RemoteWebDriver driver;
 	public Scenario s;
-    public LoginPage1 lp;
+    public SignupPage su;
     public BaseClass bc;
     public WebSiteUtility wu;
  //   public FluentWait<RemoteWebDriver> wait;
@@ -30,7 +29,7 @@ public class LoginStepDef1 {
 	@Given("open browser")
 	public void openBrowser()  {
 		wu=new WebSiteUtility();
-	    bc.driver=wu.launchBrowser("firefox");
+	    bc.driver=wu.launchBrowser("edge");
 		bc.driver.manage().window().maximize();
 		bc.driver.manage().timeouts().implicitlyWait(Duration.ofMillis(4000));	
 	}	
@@ -39,41 +38,66 @@ public class LoginStepDef1 {
 		wu=new WebSiteUtility();
 		wu.launchSite(bc.driver, url);
 	}
-	@And ("enter userId as {} and click on next button")
-	public void userfield(String uname) throws Exception {
+	@And ("enter firstName {} and lastName {}")
+	public void reg1(String uname,String lname) throws Exception {
 		
-		lp=new LoginPage1(bc.driver);
+		su=new SignupPage(bc.driver);
 		Thread.sleep(3000);
-		lp.emailOrPhoneField(uname);
-		Thread.sleep(2000);
-		lp.nextBtn();
-		Thread.sleep(2000);
+		su.first_Name(uname);
+		su.last_Name(lname);
 	}
-	@And("enter password as {} and click on next button")
-	public void passfield(String pword) throws Exception {
+	@And("enter address as {} and city {} and state {}")
+	public void reg2(String vlg,String cty,String st) throws Exception {
 	
-		lp=new LoginPage1(bc.driver);
-		Thread.sleep(3000);
-		lp.enterYourPasswordField(pword);
+		su=new SignupPage(bc.driver);
 		Thread.sleep(1000);
-		lp.nextBtn();
-		Thread.sleep(2000);
+		su.address_vlg(vlg);
+		su.city_Name(cty);
+		su.state_Name(st);
 		
 	}
+	@And("enter zip as {} and phNum {} and ssn {}")
+	public void reg3(String zp,String pno,String ssnNo) throws Exception {
 	
-	@Then("check the composite btn is displayed or not")
+		su=new SignupPage(bc.driver);
+		Thread.sleep(1000);
+		su.zip_Code(zp);
+		su.phone_Number(pno);
+		su.ssn_Number(ssnNo);
+		
+	}
+	@And("enter username as {} and pw {} and click on enter btn")
+	public void reg4(String un,String pw) throws Exception {
+	
+		su=new SignupPage(bc.driver);
+		Thread.sleep(1000);
+		su.user_name(un);
+		su.pass_word(pw);
+		su.repeated_Password(pw);
+		Thread.sleep(1000);
+		su.register_btn();
+		
+	}
+	@Then("check the welcome msg is displayed or not")
 	public void loginValidate() throws IOException, Exception {
 		
 		try {
-			lp=new LoginPage1(bc.driver);
+			su=new SignupPage(bc.driver);
 			Thread.sleep(5000);
-			lp.composeField();
-			System.out.println("valid user");
+			if(su.welcome_page()) {
+				System.out.println("valid user");
+			}
 		}
 		catch(Exception e) {
 			System.out.println("In-valid user");
 			
 		}
 	}
-
+	@When("click on logout btn")
+	public void logout() throws Exception {
+		su=new SignupPage(bc.driver);
+		Thread.sleep(3000);
+		su.logOut_btn();
+	}
+	
 }
