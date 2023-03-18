@@ -17,7 +17,7 @@ Feature: para bank
 
     Examples: 
       | fname | lname | adr     | ct      | st | zip    | phno      | ssnno | usn         | pw      |
-      | surya | king  | madurai | chennai | TN | 978321 | 092337821 |  4352 | suryaking25 | surya22 |
+      | surya | king  | madurai | chennai | TN | 978321 | 092337821 |  4352 | suryaking26 | surya22 |
 
   #Scenario Outline: login with valid details and check all tabs
     #Given open browser
